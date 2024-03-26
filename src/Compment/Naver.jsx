@@ -71,18 +71,20 @@ const Naver = () => {
               {navsLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-3xl font-bold">Book Vibe</a>
+          <a className="btn btn-ghost text-xl lg:text-3xl font-bold">
+            Book Vibe
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-[18px] gap-4">
             {navsLinks}
           </ul>
         </div>
-        <div className="flex gap-4">
-          <button className="btn text-white bg-[#23BE0A] font-semibold">
+        <div className="flex gap-2 lg:gap-4">
+          <button className="btn text-white bg-[#23BE0A] lg:font-semibold">
             Sing in{' '}
           </button>
-          <button className="btn bg-[#59C6D2] font-semibold text-white">
+          <button className="btn bg-[#59C6D2] lg:font-semibold text-white">
             Sing up
           </button>
         </div>

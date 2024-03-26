@@ -7,7 +7,6 @@ const MainLayout = () => {
       <div>
         <Naver></Naver>
       </div>
-
       <Outlet></Outlet>
     </div>
   );
