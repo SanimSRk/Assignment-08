@@ -1,3 +1,5 @@
+import { getLockalStroges } from './usLockalStroges';
+
 const getWishLockalStroges = () => {
   const getWishStroges = localStorage.getItem('Book-wish');
   if (getWishStroges) {
@@ -7,9 +9,12 @@ const getWishLockalStroges = () => {
 };
 
 const saveWishLockalStroges = id => {
+  const storeData = getLockalStroges();
   const saveWishStroges = getWishLockalStroges();
   const isExists = saveWishStroges.find(strog => strog === id);
-  if (!isExists) {
+  const isData = storeData.find(str => str === id);
+  console.log(isData);
+  if (!isExists && !isData) {
     saveWishStroges.push(id);
     localStorage.setItem('Book-wish', JSON.stringify(saveWishStroges));
   }
