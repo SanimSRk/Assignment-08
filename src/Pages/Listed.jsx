@@ -3,16 +3,27 @@ import ReadBooks from '../Compment/ReadBooks';
 import WishListBook from '../Compment/WishListBook';
 import { useEffect, useState } from 'react';
 import { getLockalStroges } from '../ulitly/usLockalStroges';
+import { getWishLockalStroges } from '../ulitly/anthorLockalStroges';
 
 const Listed = () => {
   const booksAlldata = useLoaderData();
 
   const [bookDatas, setBookData] = useState([]);
+  const [wishData, setWishData] = useState([]);
   useEffect(() => {
     const readBk = getLockalStroges();
     if (booksAlldata.length > 0) {
       const bkData = booksAlldata.filter(bok => readBk.includes(bok.bookId));
       setBookData(bkData);
+    }
+  }, []);
+
+  useEffect(() => {
+    const wisBk = getWishLockalStroges();
+
+    if (booksAlldata.length > 0) {
+      const wiDat = booksAlldata.filter(wish => wisBk.includes(wish.bookId));
+      setWishData(wiDat);
     }
   }, []);
 
@@ -70,7 +81,11 @@ const Listed = () => {
           role="tabpanel"
           className="tab-content bg-base-100 border-t-base-300  p-6"
         >
-          <WishListBook></WishListBook>
+          <div>
+            {wishData.map(wis => (
+              <WishListBook key={wis.bookId} wis={wis}></WishListBook>
+            ))}
+          </div>
         </div>
       </div>
     </div>
