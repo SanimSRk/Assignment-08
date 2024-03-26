@@ -1,7 +1,21 @@
+import { useLoaderData } from 'react-router-dom';
 import ReadBooks from '../Compment/ReadBooks';
 import WishListBook from '../Compment/WishListBook';
+import { useEffect, useState } from 'react';
+import { getLockalStroges } from '../ulitly/usLockalStroges';
 
 const Listed = () => {
+  const booksAlldata = useLoaderData();
+
+  const [bookDatas, setBookData] = useState([]);
+  useEffect(() => {
+    const readBk = getLockalStroges();
+    if (booksAlldata.length > 0) {
+      const bkData = booksAlldata.filter(bok => readBk.includes(bok.bookId));
+      setBookData(bkData);
+    }
+  }, []);
+
   return (
     <div className="w-[85%] mx-auto mt-12">
       <div className="py-8 bg-[#1313130D] text-center rounded-lg mb-8">
@@ -38,7 +52,11 @@ const Listed = () => {
           role="tabpanel"
           className="tab-content bg-base-100 border-t-base-300  p-6"
         >
-          <ReadBooks></ReadBooks>
+          <div>
+            {bookDatas.map(bks => (
+              <ReadBooks key={bks.bookId} bks={bks}></ReadBooks>
+            ))}
+          </div>
         </div>
         <input
           type="radio"

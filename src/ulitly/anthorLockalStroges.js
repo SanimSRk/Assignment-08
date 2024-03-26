@@ -13,7 +13,7 @@ const saveWishLockalStroges = id => {
   const saveWishStroges = getWishLockalStroges();
   const isExists = saveWishStroges.find(strog => strog === id);
   const isData = storeData.find(str => str === id);
-  console.log(isData);
+
   if (!isExists && !isData) {
     saveWishStroges.push(id);
     localStorage.setItem('Book-wish', JSON.stringify(saveWishStroges));
