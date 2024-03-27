@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { getLockalStroges } from '../ulitly/usLockalStroges';
 import { useLoaderData } from 'react-router-dom';
-import { data } from 'autoprefixer';
+
 const Pagess = () => {
   const booksData = useLoaderData();
-  const [bookDt, setBookdt] = useState({});
+  const [bookDt, setBookdt] = useState([]);
   useEffect(() => {
     const readBk = getLockalStroges();
     if (booksData.length > 0) {
@@ -14,6 +14,7 @@ const Pagess = () => {
       setBookdt(bkData);
     }
   }, []);
+  console.log(bookDt);
   const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 
   const getPath = (x, y, width, height) => {
@@ -26,11 +27,10 @@ const Pagess = () => {
     }, ${y + height}
   Z`;
   };
-  console.log(getPath);
 
   const TriangleBar = props => {
     const { fill, x, y, width, height } = props;
-    console.log(props);
+
     return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
   };
 
@@ -38,7 +38,7 @@ const Pagess = () => {
     <div className="w-[85%] mx-auto">
       <BarChart
         width={1100}
-        height={550}
+        height={500}
         data={bookDt}
         margin={{
           top: 20,
@@ -56,9 +56,9 @@ const Pagess = () => {
           shape={<TriangleBar />}
           label={{ position: 'top' }}
         >
-          {/* {bookDt.map((bk, inx) => (
-            <Cell key={`cell${inx}`}></Cell>
-          ))} */}
+          {bookDt?.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+          ))}
         </Bar>
       </BarChart>
     </div>
