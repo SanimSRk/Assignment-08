@@ -11,6 +11,7 @@ const saveLockalStroges = id => {
   const isExists = saveStroges.find(strog => strog === id);
   if (!isExists) {
     saveStroges.push(id);
+
     localStorage.setItem('Book-data', JSON.stringify(saveStroges));
   }
 };

@@ -1,7 +1,7 @@
 [
   {
     "bookId": 1,
-    "bookName": "The Great Gatsby",
+    "bookName": "The Great",
     "author": "F. Scott Fitzgerald",
     "image": "https://i.postimg.cc/c4rbQHtf/kindpng-4945926-1.png",
     "review": "A timeless classic that delves into the complexities of the American Dream, with rich characters and a captivating narrative.",
@@ -14,7 +14,7 @@
   },
   {
     "bookId": 2,
-    "bookName": "To Kill a Mockingbird",
+    "bookName": " Mockingbird",
     "author": "Harper Lee",
     "image": "https://i.postimg.cc/ZKcm003Z/kindpng-7318921.png",
     "review": "A poignant exploration of racial injustice and moral growth through the eyes of a young girl in the South.",
@@ -40,7 +40,7 @@
   },
   {
     "bookId": 4,
-    "bookName": "The Catcher in the Rye",
+    "bookName": "The Catcher",
     "author": "J.D. Salinger",
     "image": "https://i.postimg.cc/tC7knMnT/kindpng-4022054-1.png",
     "review": "An iconic portrayal of teenage angst and alienation, resonating with readers for generations.",
@@ -53,7 +53,7 @@
   },
   {
     "bookId": 5,
-    "bookName": "Pride and Prejudice",
+    "bookName": "Pride ",
     "author": "Jane Austen",
     "image": "https://i.postimg.cc/k5Nvdrzj/kindpng-81724-1.png",
     "review": "A timeless romance filled with wit and social commentary, showcasing the intricacies of relationships in Regency England.",
@@ -79,7 +79,7 @@
   },
   {
     "bookId": 7,
-    "bookName": "Harry Potter and the Philosopher's Stone",
+    "bookName": "Harry Potter ",
     "author": "J.K. Rowling",
     "image": "https://i.postimg.cc/Dzh16j01/kindpng-5624060-1.png",
     "review": "A captivating tale of magic and friendship, introducing readers to the enchanting world of Hogwarts.",
@@ -105,7 +105,7 @@
   },
   {
     "bookId": 9,
-    "bookName": "The Lord of the Rings: The Fellowship of the Ring",
+    "bookName": "The Lord",
     "author": "J.R.R. Tolkien",
     "image": "https://i.postimg.cc/c4rbQHtf/kindpng-4945926-1.png",
     "review": "An epic tale of friendship, bravery, and the battle between good and evil, set in the enchanting world of Middle-earth.",

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { saveLockalStroges } from '../ulitly/usLockalStroges';
 import { saveWishLockalStroges } from '../ulitly/anthorLockalStroges';
+
 const BookDetails = () => {
   const { id } = useParams();
   const intId = parseInt(id);
@@ -26,11 +27,13 @@ const BookDetails = () => {
   } = bookItems;
 
   const handileClickRead = () => {
-    console.log('ami ache vahi');
-    saveLockalStroges(intId);
+    if (saveLockalStroges(intId)) {
+      console.log('add hoyse vahi');
+    } else {
+      console.log('add hoy nai vahi');
+    }
   };
   const handileClickWishLest = () => {
-    console.log('ami ami wishList');
     saveWishLockalStroges(intId);
   };
   return (

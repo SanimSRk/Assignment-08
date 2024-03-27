@@ -7,10 +7,12 @@ import Home from './Pages/Home';
 import Listed from './Pages/Listed';
 import Pagess from './Pages/Pagess';
 import BookDetails from './Pages/BookDetails';
+import ErrorPages from './Pages/ErrorPages';
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPages></ErrorPages>,
     children: [
       {
         path: '/',
@@ -24,6 +26,7 @@ const router = createBrowserRouter([
       {
         path: '/Pages',
         element: <Pagess></Pagess>,
+        loader: () => fetch('/Book.json'),
       },
       {
         path: '/BookDetails/:id',
