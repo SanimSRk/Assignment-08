@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
-import { saveLockalStroges } from '../ulitly/usLockalStroges';
+import { getLockalStroges, saveLockalStroges } from '../ulitly/usLockalStroges';
 import { saveWishLockalStroges } from '../ulitly/anthorLockalStroges';
 
 const BookDetails = () => {
@@ -8,6 +8,7 @@ const BookDetails = () => {
   const intId = parseInt(id);
   const detailsDat = useLoaderData();
   const [bookItems, setBookItems] = useState([]);
+  const [ids, setId] = useState([]);
   useEffect(() => {
     const books = detailsDat.find(book => book.bookId === intId);
     setBookItems(books);
@@ -26,13 +27,10 @@ const BookDetails = () => {
     yearOfPublishing,
   } = bookItems;
 
-  const handileClickRead = () => {
-    if (saveLockalStroges(intId)) {
-      console.log('add hoyse vahi');
-    } else {
-      console.log('add hoy nai vahi');
-    }
+  const handileClickRead = intId => {
+    saveLockalStroges(intId);
   };
+
   const handileClickWishLest = () => {
     saveWishLockalStroges(intId);
   };
@@ -84,7 +82,7 @@ const BookDetails = () => {
 
         <div className="flex gap-4 mt-12">
           <button
-            onClick={handileClickRead}
+            onClick={() => handileClickRead(intId)}
             className="btn font-semibold bg-white "
           >
             Read

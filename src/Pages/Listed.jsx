@@ -10,12 +10,34 @@ const Listed = () => {
 
   const [bookDatas, setBookData] = useState([]);
   const [wishData, setWishData] = useState([]);
+  const [redBooks, setRedBooks] = useState([]);
+  const [displys, setDisply] = useState([]);
+  console.log(redBooks);
+  const handileSortBooks = sortDts => {
+    if (sortDts === 'rating') {
+      const sortrating = redBooks.sort((a, b) => b.rating - a.rating);
+      setDisply(sortrating);
+    }
+    if (sortDts === 'totalPages') {
+      const Totlepgs = redBooks.sort((a, b) => b.totalPages - a.totalPages);
+      setDisply(Totlepgs);
+    }
+    if (sortDts === 'yearOfPublishing') {
+      const yearOf = redBooks.sort(
+        (a, b) => b.yearOfPublishing - a.yearOfPublishing
+      );
+      setDisply(yearOf);
+    }
+  };
 
   useEffect(() => {
     const readBk = getLockalStroges();
     if (booksAlldata.length > 0) {
-      const bkData = booksAlldata.filter(bok => readBk.includes(bok.bookId));
+      const bkData = booksAlldata?.filter(bok => readBk?.includes(bok.bookId));
+
       setBookData(bkData);
+      setDisply(bkData);
+      setRedBooks(bkData);
     }
   }, []);
 
@@ -58,9 +80,19 @@ const Listed = () => {
             tabIndex={0}
             className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <button>
+            <button onClick={() => handileSortBooks('rating')}>
               <li>
                 <a>Item 1</a>
+              </li>{' '}
+            </button>
+            <button onClick={() => handileSortBooks('totalPages')}>
+              <li>
+                <a>Item 2</a>
+              </li>{' '}
+            </button>
+            <button onClick={() => handileSortBooks('yearOfPublishing')}>
+              <li>
+                <a>Item 3</a>
               </li>{' '}
             </button>
           </ul>
@@ -79,7 +111,7 @@ const Listed = () => {
           className="tab-content bg-base-100 border-t-base-300  p-6"
         >
           <div>
-            {bookDatas.map(bks => (
+            {displys.map(bks => (
               <ReadBooks key={bks.bookId} bks={bks}></ReadBooks>
             ))}
           </div>
