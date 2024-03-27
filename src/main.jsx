@@ -8,6 +8,8 @@ import Listed from './Pages/Listed';
 import Pagess from './Pages/Pagess';
 import BookDetails from './Pages/BookDetails';
 import ErrorPages from './Pages/ErrorPages';
+import Book from './Pages/Book';
+import Blogs from './Pages/Blogs';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
         path: '/BookDetails/:id',
         element: <BookDetails></BookDetails>,
         loader: () => fetch('/Book.json'),
+      },
+      {
+        path: '/Details',
+        element: <Book></Book>,
+      },
+      {
+        path: '/Blogs',
+        element: <Blogs></Blogs>,
       },
     ],
   },

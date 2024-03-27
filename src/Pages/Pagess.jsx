@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from 'recharts';
 import { getLockalStroges } from '../ulitly/usLockalStroges';
 import { useLoaderData } from 'react-router-dom';
 
@@ -35,32 +43,34 @@ const Pagess = () => {
   };
 
   return (
-    <div className="w-[85%] mx-auto">
-      <BarChart
-        width={1100}
-        height={500}
-        data={bookDt}
-        margin={{
-          top: 20,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="bookName" />
-        <YAxis />
-        <Bar
-          dataKey={'totalPages'}
-          fill="#8884d8"
-          shape={<TriangleBar />}
-          label={{ position: 'top' }}
+    <div className="w-[85%] mx-auto bg-[#13131308] lg:py-[90px] lg:px-12">
+      <ResponsiveContainer width={'100%'} height={500}>
+        <BarChart
+          width={1100}
+          height={500}
+          data={bookDt}
+          margin={{
+            top: 20,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
         >
-          {bookDt?.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-          ))}
-        </Bar>
-      </BarChart>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="bookName" />
+          <YAxis />
+          <Bar
+            dataKey={'totalPages'}
+            fill="#8884d8"
+            shape={<TriangleBar />}
+            label={{ position: 'top' }}
+          >
+            {bookDt?.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 };

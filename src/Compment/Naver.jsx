@@ -41,6 +41,30 @@ const Naver = () => {
           Pages to Read
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to={'/Details'}
+          className={({ isActive }) =>
+            isActive
+              ? 'border-[#23BE0A]  border text-[#23BE0A] font-bold'
+              : 'font-bold'
+          }
+        >
+          Books Details
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={'/Blogs'}
+          className={({ isActive }) =>
+            isActive
+              ? 'border-[#23BE0A]  border text-[#23BE0A] font-bold'
+              : 'font-bold'
+          }
+        >
+          Blogs
+        </NavLink>
+      </li>
     </>
   );
   return (
