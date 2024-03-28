@@ -12,7 +12,7 @@ const ReadBooks = ({ bks }) => {
     yearOfPublishing,
   } = bks;
   return (
-    <div className="shadow-md p-6 mb-6 lg:flex gap-6 rounded-lg">
+    <div className="shadow-md p-6 lg:py-0 py-4 mb-6 lg:flex gap-6 rounded-lg">
       <div className="bg-[#1313130D] px-12 flex justify-center items-center rounded-lg">
         <img src={image} alt="" />
       </div>
@@ -21,8 +21,8 @@ const ReadBooks = ({ bks }) => {
           <h2 className="text-2xl font-bold my-4">{bookName}</h2>
           <h2 className="font-medium">By : {author} </h2>
         </div>
-        <div className="mt-6 flex gap-3 items-center  pb-5">
-          <h2 className="font-bold">Tag</h2>
+        <div className="mt-3 lg:mt-6   lg:flex gap-3 grid items-center  pb-5">
+          <h2 className="font-bold text-center">Tag:</h2>
           {tags?.map(tgs => (
             <button
               key={tgs}
@@ -54,8 +54,8 @@ const ReadBooks = ({ bks }) => {
             <h2> Year of Publishing: {yearOfPublishing}</h2>
           </div>
         </div>
-        <div className="flex gap-5 border-b-2 pb-5 ">
-          <div className="flex gap-1">
+        <div className="lg:flex grid lg:gap-5 gap-3 border-b-2 pb-5 ">
+          <div className=" flex gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -90,7 +90,7 @@ const ReadBooks = ({ bks }) => {
             <h2>Page: {totalPages}</h2>
           </div>
         </div>
-        <div className="flex gap-3 mt-4">
+        <div className="lg:flex grid gap-3 mt-4">
           <button className="btn rounded-3xl  text-[#328EFF] bg-[#328EFF26] ">
             category: {category}
           </button>

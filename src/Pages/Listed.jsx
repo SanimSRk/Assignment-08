@@ -4,6 +4,8 @@ import WishListBook from '../Compment/WishListBook';
 import { useEffect, useState } from 'react';
 import { getLockalStroges } from '../ulitly/usLockalStroges';
 import { getWishLockalStroges } from '../ulitly/anthorLockalStroges';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const Listed = () => {
   const booksAlldata = useLoaderData();
@@ -15,46 +17,54 @@ const Listed = () => {
   const [displys, setDisply] = useState([]);
   const [wisDisply, setWihDisply] = useState([]);
 
+  const readDatabooks = getLockalStroges();
   useEffect(() => {
-    const readDatabooks = getLockalStroges();
-
     const dataBoks = booksAlldata?.filter(bok =>
       readDatabooks?.includes(bok.bookId)
     );
     setRedBooks(dataBoks);
   }, []);
 
+  const getWish = getWishLockalStroges();
   useEffect(() => {
-    const getWish = getWishLockalStroges();
     const wishBookDat = booksAlldata?.filter(bok =>
       getWish?.includes(bok.bookId)
     );
-
     setWishBooks(wishBookDat);
   }, []);
 
   const handileSortBooks = sortDts => {
-    if (sortDts === 'rating') {
-      const sortrating = redBooks.sort((a, b) => b.rating - a.rating);
-      const wishSort = wishBooks.sort((a, b) => b.rating - a.rating);
+    console.log(redBooks);
+    if (redBooks.length > 0) {
+      if (sortDts === 'rating') {
+        const sortrating = redBooks.sort((a, b) => b.rating - a.rating);
 
-      setDisply(sortrating);
-      setWihDisply(wishSort);
-    } else if (sortDts === 'totalPages') {
-      const Totlepgs = redBooks.sort((a, b) => b.totalPages - a.totalPages);
-      const wishTotle = wishBooks.sort((a, b) => b.totalPages - a.totalPages);
-      setDisply(Totlepgs);
-      setWihDisply(wishTotle);
-    } else if (sortDts === 'yearOfPublishing') {
-      const yearOf = redBooks.sort(
-        (a, b) => b.yearOfPublishing - a.yearOfPublishing
-      );
-      const wishYearof = wishBooks.sort(
-        (a, b) => b.yearOfPublishing - a.yearOfPublishing
-      );
+        setDisply(sortrating);
+      } else if (sortDts === 'totalPages') {
+        const Totlepgs = redBooks.sort((a, b) => b.totalPages - a.totalPages);
 
-      setDisply(yearOf);
-      setWihDisply(wishYearof);
+        setDisply(Totlepgs);
+      } else if (sortDts === 'yearOfPublishing') {
+        const yearOf = redBooks.sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        );
+
+        setDisply(yearOf);
+      }
+    } else if (wishBooks.length > 0) {
+      if (sortDts === 'rating') {
+        const wishSort = wishBooks.sort((a, b) => b.rating - a.rating);
+        setWihDisply(wishSort);
+      } else if (sortDts === 'totalPages') {
+        const wishTotle = wishBooks.sort((a, b) => b.totalPages - a.totalPages);
+
+        setWihDisply(wishTotle);
+      } else if (sortDts === 'yearOfPublishing') {
+        const wishYearof = wishBooks.sort(
+          (a, b) => b.yearOfPublishing - a.yearOfPublishing
+        );
+        setWihDisply(wishYearof);
+      }
     }
   };
   // console.log(wisDisply);
@@ -126,42 +136,25 @@ const Listed = () => {
           </ul>
         </div>
       </div>
-      <div role="tablist" className="tabs mt-14 tabs-lifted">
-        <input
-          type="radio"
-          name="my_tabs_2"
-          role="tab"
-          className="tab text-[18px] font-medium"
-          aria-label="Read Books"
-        />
-        <div
-          role="tabpanel"
-          className="tab-content bg-base-100 border-t-base-300  p-6"
-        >
-          <div>
+
+      <div>
+        <Tabs>
+          <TabList>
+            <Tab>Read Books</Tab>
+            <Tab>Wishlist Books</Tab>
+          </TabList>
+
+          <TabPanel>
             {displys.map(bks => (
               <ReadBooks key={bks.bookId} bks={bks}></ReadBooks>
             ))}
-          </div>
-        </div>
-        <input
-          type="radio"
-          name="my_tabs_2"
-          role="tab"
-          className="tab text-[18px] font-medium"
-          aria-label="Wishlist Books"
-          checked
-        />
-        <div
-          role="tabpanel"
-          className="tab-content bg-base-100 border-t-base-300  p-6"
-        >
-          <div>
+          </TabPanel>
+          <TabPanel>
             {wisDisply.map(wis => (
               <WishListBook key={wis.bookId} wis={wis}></WishListBook>
             ))}
-          </div>
-        </div>
+          </TabPanel>
+        </Tabs>
       </div>
     </div>
   );
