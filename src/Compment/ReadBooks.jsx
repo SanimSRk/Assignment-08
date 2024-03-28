@@ -12,8 +12,8 @@ const ReadBooks = ({ bks }) => {
     yearOfPublishing,
   } = bks;
   return (
-    <div className="shadow-md p-6 lg:py-0 py-4 mb-6 lg:flex gap-6 rounded-lg">
-      <div className="bg-[#1313130D] px-12 flex justify-center items-center rounded-lg">
+    <div className="shadow-md p-6  mb-6 lg:flex gap-6 rounded-lg">
+      <div className="bg-[#1313130D] py-4 lg:py-0 px-12 flex justify-center items-center rounded-lg">
         <img src={image} alt="" />
       </div>
       <div>

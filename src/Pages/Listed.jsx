@@ -18,6 +18,7 @@ const Listed = () => {
   const [wisDisply, setWihDisply] = useState([]);
 
   const readDatabooks = getLockalStroges();
+
   useEffect(() => {
     const dataBoks = booksAlldata?.filter(bok =>
       readDatabooks?.includes(bok.bookId)
@@ -34,40 +35,42 @@ const Listed = () => {
   }, []);
 
   const handileSortBooks = sortDts => {
-    console.log(redBooks);
     if (redBooks.length > 0) {
+      let output = [...redBooks];
       if (sortDts === 'rating') {
-        const sortrating = redBooks.sort((a, b) => b.rating - a.rating);
+        const sortrating = output.sort((a, b) => b.rating - a.rating);
 
         setDisply(sortrating);
       } else if (sortDts === 'totalPages') {
-        const Totlepgs = redBooks.sort((a, b) => b.totalPages - a.totalPages);
+        const Totlepgs = output.sort((a, b) => b.totalPages - a.totalPages);
 
         setDisply(Totlepgs);
       } else if (sortDts === 'yearOfPublishing') {
-        const yearOf = redBooks.sort(
+        const yearOf = output.sort(
           (a, b) => b.yearOfPublishing - a.yearOfPublishing
         );
-
         setDisply(yearOf);
       }
-    } else if (wishBooks.length > 0) {
+    }
+
+    if (wishBooks.length > 0) {
+      let wishOupt = [...wishBooks];
       if (sortDts === 'rating') {
-        const wishSort = wishBooks.sort((a, b) => b.rating - a.rating);
+        const wishSort = wishOupt.sort((a, b) => b.rating - a.rating);
         setWihDisply(wishSort);
       } else if (sortDts === 'totalPages') {
-        const wishTotle = wishBooks.sort((a, b) => b.totalPages - a.totalPages);
+        const wishTotle = wishOupt.sort((a, b) => b.totalPages - a.totalPages);
 
         setWihDisply(wishTotle);
       } else if (sortDts === 'yearOfPublishing') {
-        const wishYearof = wishBooks.sort(
+        const wishYearof = wishOupt.sort(
           (a, b) => b.yearOfPublishing - a.yearOfPublishing
         );
         setWihDisply(wishYearof);
       }
     }
   };
-  // console.log(wisDisply);
+
   useEffect(() => {
     const readBk = getLockalStroges();
     if (booksAlldata.length > 0) {
@@ -120,17 +123,17 @@ const Listed = () => {
           >
             <button onClick={() => handileSortBooks('rating')}>
               <li>
-                <a>Item 1</a>
+                <a>Rating</a>
               </li>{' '}
             </button>
             <button onClick={() => handileSortBooks('totalPages')}>
               <li>
-                <a>Item 2</a>
+                <a>Number of pages</a>
               </li>{' '}
             </button>
             <button onClick={() => handileSortBooks('yearOfPublishing')}>
               <li>
-                <a>Item 3</a>
+                <a>Publisher year</a>
               </li>{' '}
             </button>
           </ul>

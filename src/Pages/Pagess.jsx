@@ -43,7 +43,7 @@ const Pagess = () => {
   };
 
   return (
-    <div className="w-[85%] mx-auto bg-[#13131308] lg:py-[90px] lg:px-12">
+    <div className="w-[85%]  mx-auto bg-[#13131308] lg:py-[90px] lg:px-12">
       <ResponsiveContainer width={'100%'} height={500}>
         <BarChart
           width={1100}

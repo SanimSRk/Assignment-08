@@ -10,7 +10,7 @@ const Blogs = () => {
         <h2 className="font-medium">Genre: Novel</h2>
         <h2 className="font-medium">Published: 1925</h2>
         <h2>
-          Synopsis: "The Great Gatsby" is a classic American novel set in the
+          Synopsis: The Great Gatsby is a classic American novel set in the
           Roaring Twenties. It follows the life of Jay Gatsby, a mysterious and
           wealthy man, through the eyes of Nick Carraway, a young man who moves
           to Long Island and becomes Gatsby's neighbor. The novel explores
