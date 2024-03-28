@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 import { getLockalStroges, saveLockalStroges } from '../ulitly/usLockalStroges';
-import { saveWishLockalStroges } from '../ulitly/anthorLockalStroges';
+import {
+  getWishLockalStroges,
+  saveWishLockalStroges,
+} from '../ulitly/anthorLockalStroges';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookDetails = () => {
   const { id } = useParams();
   const intId = parseInt(id);
   const detailsDat = useLoaderData();
   const [bookItems, setBookItems] = useState([]);
-  const [ids, setId] = useState([]);
+
   useEffect(() => {
     const books = detailsDat.find(book => book.bookId === intId);
     setBookItems(books);
@@ -28,11 +34,34 @@ const BookDetails = () => {
   } = bookItems;
 
   const handileClickRead = intId => {
-    saveLockalStroges(intId);
+    const lockData = getLockalStroges();
+
+    const dataBoks = lockData.includes(intId);
+
+    if (!dataBoks) {
+      saveLockalStroges(intId);
+      toast.success('succssfully Read !!');
+    } else {
+      toast.warning('Already Read added!');
+    }
   };
 
   const handileClickWishLest = () => {
-    saveWishLockalStroges(intId);
+    const wishData = getWishLockalStroges();
+    const lockal = getLockalStroges();
+    const wishFinal = wishData.includes(intId);
+    const lockalFinale = lockal.includes(intId);
+
+    if (lockalFinale) {
+      saveWishLockalStroges(intId);
+      toast.warn('This book has already read !');
+    } else if (!wishFinal) {
+      saveWishLockalStroges(intId);
+      toast.success('wishlist succssFully add!');
+    } else if (wishFinal) {
+      saveWishLockalStroges(intId);
+      toast.warning('wishlist already added!');
+    }
   };
   return (
     <div className="w-[85%] mx-auto lg:flex gap-12 mt-12 ">
@@ -95,6 +124,7 @@ const BookDetails = () => {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

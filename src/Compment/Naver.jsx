@@ -50,7 +50,7 @@ const Naver = () => {
               : 'font-bold'
           }
         >
-          Books Details
+          Contact Us
         </NavLink>
       </li>
       <li>
