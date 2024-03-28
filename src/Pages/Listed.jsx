@@ -11,25 +11,53 @@ const Listed = () => {
   const [bookDatas, setBookData] = useState([]);
   const [wishData, setWishData] = useState([]);
   const [redBooks, setRedBooks] = useState([]);
+  const [wishBooks, setWishBooks] = useState([]);
   const [displys, setDisply] = useState([]);
-  console.log(redBooks);
+  const [wisDisply, setWihDisply] = useState([]);
+
+  useEffect(() => {
+    const readDatabooks = getLockalStroges();
+
+    const dataBoks = booksAlldata?.filter(bok =>
+      readDatabooks?.includes(bok.bookId)
+    );
+    setRedBooks(dataBoks);
+  }, []);
+
+  useEffect(() => {
+    const getWish = getWishLockalStroges();
+    const wishBookDat = booksAlldata?.filter(bok =>
+      getWish?.includes(bok.bookId)
+    );
+
+    setWishBooks(wishBookDat);
+  }, []);
+
   const handileSortBooks = sortDts => {
     if (sortDts === 'rating') {
       const sortrating = redBooks.sort((a, b) => b.rating - a.rating);
+      const wishSort = wishBooks.sort((a, b) => b.rating - a.rating);
+
       setDisply(sortrating);
-    }
-    if (sortDts === 'totalPages') {
+      setWihDisply(wishSort);
+    } else if (sortDts === 'totalPages') {
       const Totlepgs = redBooks.sort((a, b) => b.totalPages - a.totalPages);
+      const wishTotle = wishBooks.sort((a, b) => b.totalPages - a.totalPages);
       setDisply(Totlepgs);
-    }
-    if (sortDts === 'yearOfPublishing') {
+      setWihDisply(wishTotle);
+    } else if (sortDts === 'yearOfPublishing') {
       const yearOf = redBooks.sort(
         (a, b) => b.yearOfPublishing - a.yearOfPublishing
       );
+      const wishYearof = wishBooks.sort(
+        (a, b) => b.yearOfPublishing - a.yearOfPublishing
+      );
+
       setDisply(yearOf);
+      setWihDisply(wishYearof);
     }
   };
-
+  // console.log(wisDisply);
   useEffect(() => {
     const readBk = getLockalStroges();
     if (booksAlldata.length > 0) {
@@ -37,7 +65,6 @@ const Listed = () => {
 
       setBookData(bkData);
       setDisply(bkData);
-      setRedBooks(bkData);
     }
   }, []);
 
@@ -47,6 +74,7 @@ const Listed = () => {
     if (booksAlldata.length > 0) {
       const wiDat = booksAlldata.filter(wish => wisBk.includes(wish.bookId));
       setWishData(wiDat);
+      setWihDisply(wiDat);
     }
   }, []);
 
@@ -129,7 +157,7 @@ const Listed = () => {
           className="tab-content bg-base-100 border-t-base-300  p-6"
         >
           <div>
-            {wishData.map(wis => (
+            {wisDisply.map(wis => (
               <WishListBook key={wis.bookId} wis={wis}></WishListBook>
             ))}
           </div>
